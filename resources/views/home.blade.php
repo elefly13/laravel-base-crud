@@ -1,8 +1,6 @@
 @extends('layout.app')
 
 @section('content')
-    <div class="container">
-        benvenuto
-    </div>
+@include('partials.main')
     
 @endsection

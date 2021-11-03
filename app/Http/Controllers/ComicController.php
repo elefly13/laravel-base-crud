@@ -107,4 +107,13 @@ class ComicController extends Controller
         $comic->delete();
         return redirect()->route('comics.index');
     }
+    
+    // public function main() 
+    // {
+        
+    //     $comics = Comic::all();
+    
+    //     return view('main', compact('comics'));
+    // }
+    
 }
