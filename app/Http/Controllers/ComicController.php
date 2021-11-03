@@ -44,7 +44,7 @@ class ComicController extends Controller
             'thumb' => 'required|max:100',
             'price' => 'required',
             'series' => 'required|max:100',
-            'sale_date' => 'required|yyyy-mm-dd',
+            'sale_date' => 'required',
             'type' => 'required|max:20'
         ]);
         $new_comic = new Comic();

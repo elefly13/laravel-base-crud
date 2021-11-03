@@ -1,5 +1,6 @@
 @extends('layout.app')
 
+
 @section('content')
     <div class="container">
         <div class="row">
@@ -34,7 +35,8 @@
                                     <form method="post" action="{{ route('comics.destroy', $comic['id']) }}">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="return myFunction();">Delete</button>
+                                        
                                     </form>
                                 </td>
                             </tr>
@@ -44,5 +46,19 @@
             </div>
         </div>
 
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+       <script>  
+
+        function myFunction() {
+            var txt;
+            var r = confirm("Sicuro di voler cancellare il record?");
+            if (r == true) {
+                
+            } else {
+                return false;;
+            }
+        }
+        
+       </script>
     </div>
 @endsection
