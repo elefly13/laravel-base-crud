@@ -27,11 +27,13 @@
                                         class="btn btn-info">
                                         Details
                                     </a>
-                                    <a href="{{ route('comics.create', $comic['id']) }}"
+                                    <a href="{{ route('comics.edit', $comic['id']) }}"
                                         class="btn btn-warning">
                                         Modify
                                     </a>
-                                    <form method="post" action="">
+                                    <form method="post" action="{{ route('comics.destroy', $comic['id']) }}">
+                                        @csrf
+                                        @method('DELETE')
                                         <button type="submit" class="btn btn-danger">Delete</button>
                                     </form>
                                 </td>
@@ -41,15 +43,6 @@
                 </table>
             </div>
         </div>
-        
-        {{-- <ul>
-            @foreach ($comics as $comic)
-            <a href=" {{ route('comics.show', $comic->id)}}">
-                <li>{{$comic['title']}}</li>
-            </a>
-            @endforeach
-            
-        </ul> --}}
 
     </div>
 @endsection

@@ -39,10 +39,14 @@ class ComicController extends Controller
     {
         $data = $request->all();
 
-        // $request->validate([
-        //     'title' => 'required|unique:pastas|max:50',
-        //     'type' => 'required|max:20'
-        // ]);
+        $request->validate([
+            'title' => 'required|unique:comics|max:100',
+            'thumb' => 'required|max:100',
+            'price' => 'required',
+            'series' => 'required|max:100',
+            'sale_date' => 'required|yyyy-mm-dd',
+            'type' => 'required|max:20'
+        ]);
         $new_comic = new Comic();
         $new_comic->fill($data);
         $new_comic->save();
@@ -70,7 +74,12 @@ class ComicController extends Controller
      */
     public function edit($id)
     {
-        //
+        $comic = Comic::findOrFail($id);
+        // if($comic) {
+        //     return view('comics.edit', compact('comic'));
+        // }
+        // abort(404);
+        return view('comics.edit', compact('comic'));
     }
 
     /**
@@ -80,9 +89,11 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Comic $comic)
     {
-        //
+        $data = $request->all();
+        $comic->update($data);
+        return redirect()->route('comics.index', $comic['id']); 
     }
 
     /**
@@ -91,8 +102,9 @@ class ComicController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Comic $comic)
     {
-        //
+        $comic->delete();
+        return redirect()->route('comics.index');
     }
 }
